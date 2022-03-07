@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Inbox</ion-title>
+        <ion-title>Games</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -13,16 +13,16 @@
 
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Inbox</ion-title>
+          <ion-title size="large">Games list</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-list>
         <!-- <MessageListItem v-for="message in messages" :key="message.id" :message="message" /> -->
         <Card
-          v-for="userData in usersData"
-          :key="userData.id"
-          :user-data="userData"
+          v-for="gameData in gamesData"
+          :key="gameData.id"
+          :game-data="gameData"
         />
       </ion-list>
     </ion-content>
@@ -44,13 +44,13 @@ import {
 import Card from "@/components/Card.vue";
 import { defineComponent } from "vue";
 // import { getMessages } from "@/data/messages";
-import { getUsersData } from "@/data/userData";
+import { getGamesData } from "@/data/gameData";
 
 export default defineComponent({
   name: "HomePage",
   data() {
     return {
-      usersData: getUsersData(),
+      gamesData: getGamesData(),
     };
   },
   methods: {

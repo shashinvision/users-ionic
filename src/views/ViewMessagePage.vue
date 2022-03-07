@@ -11,22 +11,35 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content :fullscreen="true" v-if="user">
+    <ion-content :fullscreen="true" v-if="game">
       <ion-item>
         <ion-icon :icon="personCircle" color="primary"></ion-icon>
         <ion-label class="ion-text-wrap">
           <h2>
-            {{ user.first_name + " " + user.last_name }}
+            {{ game.title }}
+            <br />
             <span class="date">
-              <ion-note>{{ user.email }}</ion-note>
+              <ion-note>{{ game.platform }}</ion-note
+              >&nbsp;|&nbsp;&nbsp;
+              <ion-note>{{ game.genre }}</ion-note>
             </span>
           </h2>
         </ion-label>
       </ion-item>
 
       <div class="ion-padding">
-        <h1>{{ user.first_name + " " + user.last_name }}</h1>
-        <ion-img :src="user.avatar"></ion-img>
+        <h1>{{ game.title }}</h1>
+        <ion-img :src="game.thumbnail"></ion-img>
+        <p>{{ game.short_description }}</p>
+        <a :href="game.freetogame_profile_url">{{
+          game.freetogame_profile_url
+        }}</a>
+        <br />
+        <a :href="game.game_url">{{ game.game_url }}</a>
+        <p>{{ game.short_description }}</p>
+        <p>{{ game.publisher }}</p>
+        <p>{{ game.developer }}</p>
+        <p>{{ game.release_date }}</p>
       </div>
     </ion-content>
   </ion-page>
@@ -49,7 +62,7 @@ import {
 } from "@ionic/vue";
 import { personCircle } from "ionicons/icons";
 // import { getMessage } from '../data/messages';
-import { getUserData } from "../data/userData";
+import { getGameData } from "../data/gameData";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -66,9 +79,9 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const user = getUserData(parseInt(route.params.id as string, 10));
+    const game = getGameData(parseInt(route.params.id as string, 10));
 
-    return { user };
+    return { game };
   },
   components: {
     IonBackButton,

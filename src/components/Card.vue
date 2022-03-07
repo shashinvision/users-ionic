@@ -1,18 +1,19 @@
 <template>
   <ion-item
-    v-if="nameUser"
+    v-if="title"
     :routerLink="'/message/' + id"
     :detail="false"
     class="list-item"
   >
     <div slot="start"></div>
     <ion-label class="ion-text-wrap">
-      <ion-img :src="avatar"></ion-img>
+      <ion-img :src="thumbnail"></ion-img>
 
       <h2>
-        {{ nameUser }}
+        {{ title }}
+        <br />
         <span class="date">
-          <ion-note>{{ email }}</ion-note>
+          <ion-note>{{ short_description }}</ion-note>
         </span>
       </h2>
     </ion-label>
@@ -32,7 +33,7 @@ export default defineComponent({
     IonImg,
   },
   props: {
-    userData: {
+    gameData: {
       type: Object,
       default: () => {
         return {};
@@ -40,11 +41,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const nameUser = `${props.userData.first_name} ${props.userData.last_name}`;
-    const email = `${props.userData.email}`;
-    const avatar = `${props.userData.avatar}`;
-    const id = `${props.userData.id}`;
-    return { nameUser, email, avatar, id };
+    const title = `${props.gameData.title}`;
+    const short_description = `${props.gameData.short_description}`;
+    const thumbnail = `${props.gameData.thumbnail}`;
+    const id = `${props.gameData.id}`;
+    return { title, short_description, thumbnail, id };
   },
 });
 </script>
